@@ -13,3 +13,14 @@ def paises(request):
     data = GeoJSONSerializer().serialize(paises, use_natural_keys=True, with_modelname=False)
 
     return HttpResponse(data)
+
+def pais(request, aidi):
+    pais = world.objects.get(id = aidi)
+    #Agregar envio de centro para el mapa
+    lat = pais.geom.centroid.y
+    lon = pais.geom.centroid.x
+    return render(request, 'geo/pais.html',{'qs_results': pais,
+                                             'latitude':lat,
+                                             'longitude': lon}
+                 )
+

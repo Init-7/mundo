@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from geo.views import paises
+from geo.views import paises, pais
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^paises/$',paises),
+    url(r'^pais/(?P<aidi>[0-999]+)/$', pais),
+
+
 ]

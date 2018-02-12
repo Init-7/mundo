@@ -1,0 +1,21 @@
+<html>
+  <head>
+    {% load leaflet_tags %}
+    {% load geojson_tags %}
+    {% leaflet_js %}
+    {% leaflet_css %}
+  </head>
+  <body>
+    <h1>Pais {{ qs_results.nombre }}</h1>
+    <script type="text/javascript">
+      var collection = {{ qs_results|geojsonfeature|safe }};
+      function map_init(map, options) {
+          L.geoJson(collection).addTo(map);
+          map.setView(new L.LatLng({{ latitude }},{{ longitude }}),8);
+
+      }
+    </script>
+    {{ latitude }} {{ longitude }}
+    {% leaflet_map "cerca" callback="window.map_init" %}
+  </body>
+</html>

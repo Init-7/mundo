@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'mundo',
     'geo',
     'leaflet',
+#    'templatetags',
+    'djgeojson',
 ]
 
 MIDDLEWARE = [
