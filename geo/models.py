@@ -14,7 +14,7 @@ class world(models.Model):
     subregion = models.IntegerField()
     lon = models.FloatField()
     lat = models.FloatField()
-    geom = models.PolygonField(srid=4326)
+    geom = models.MultiPolygonField(srid=4326)
 
     def __unicode__(self):
         return u"%s %s" % (self.iso2, self.name)
