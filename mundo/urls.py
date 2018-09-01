@@ -16,11 +16,14 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 from geo.views import paises, pais
+from djgeojson.views import GeoJSONLayerView
+from django.views.generic import TemplateView
+from geo.models import world
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^paises/$',paises),
+#    url(r'^paises/$',paises),
     url(r'^pais/(?P<aidi>[0-999]+)/$', pais),
-
-
+    url(r'^paises.json/$', GeoJSONLayerView.as_view(model=world), name='paises.json'),
+    url(r'^paises-mapa$', TemplateView.as_view(template_name='geo/pais2.html'), name='paises-mapa'),
 ]
